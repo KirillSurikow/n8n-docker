@@ -3,7 +3,7 @@ services:
     name: n8n
     env: docker
     plan: starter
-    healthCheckPath: /healthz
+    healthCheckPath: /
     envVars:
       - key: N8N_BASIC_AUTH_ACTIVE
         value: "true"
@@ -11,16 +11,11 @@ services:
         sync: false
       - key: N8N_BASIC_AUTH_PASSWORD
         sync: false
-
-      - key: N8N_WEBHOOK_URL
-        value: "https://${RENDER_EXTERNAL_URL}"
-      - key: N8N_WEBHOOK_TEST_URL
-        value: "https://${RENDER_EXTERNAL_URL}"
-      - key: WEBHOOK_URL
-        value: "https://${RENDER_EXTERNAL_URL}"
       - key: N8N_HOST
-        value: "${RENDER_EXTERNAL_HOSTNAME}"
-
+        fromService:
+          type: web
+          name: n8n
+          property: host
       - key: N8N_PROTOCOL
         value: "https"
       - key: N8N_PORT
@@ -31,7 +26,21 @@ services:
         generateValue: true
       - key: N8N_USER_FOLDER
         value: "/data"
-
+      - key: WEBHOOK_TUNNEL_URL
+        fromService:
+          type: web
+          name: n8n
+          property: host
+      - key: N8N_WEBHOOK_TUNNEL_URL
+        fromService:
+          type: web
+          name: n8n
+          property: host
+      - key: VUE_APP_URL_BASE_API
+        fromService:
+          type: web
+          name: n8n
+          property: host
     disk:
       name: n8n-data
       mountPath: /data
