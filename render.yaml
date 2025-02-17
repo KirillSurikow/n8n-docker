@@ -41,5 +41,5 @@ services:
         generateValue: true
     disk:
       name: n8n-data
-      mountPath: /home/node/.n8n
+      mountPath: /opt/render/n8n/n8n
       sizeGB: 10
