@@ -3,12 +3,8 @@ services:
     name: n8n
     env: docker
     plan: starter
-    buildCommand: docker pull n8nio/n8n:latest
-    startCommand: docker run -p $PORT:5678 --name n8n n8nio/n8n n8n start --tunnel
-    disk:
-      name: n8n-data
-      mountPath: /home/node/.n8n
-      sizeGB: 10
+    image: n8nio/n8n:latest
+    healthCheckPath: /
     envVars:
       - key: N8N_BASIC_AUTH_ACTIVE
         value: "true"
@@ -21,12 +17,12 @@ services:
         fromService:
           type: web
           name: n8n
-          property: url
+          property: host
       - key: N8N_WEBHOOK_TUNNEL_URL
         fromService:
           type: web
           name: n8n
-          property: url
+          property: host
       
       - key: N8N_PORT
         value: "5678"
@@ -36,3 +32,7 @@ services:
         value: "https"
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
+    disk:
+      name: n8n-data
+      mountPath: /home/node/.n8n
+      sizeGB: 10
