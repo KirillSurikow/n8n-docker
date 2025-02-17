@@ -3,9 +3,9 @@ services:
     name: n8n
     env: docker
     plan: starter
-    healthCheckPath: /
+    healthCheckPath: /healthz
+    healthCheckTimeout: 300
     envVars:
-      # Basic auth
       - key: N8N_BASIC_AUTH_ACTIVE
         value: "true"
       - key: N8N_BASIC_AUTH_USER
@@ -13,7 +13,6 @@ services:
       - key: N8N_BASIC_AUTH_PASSWORD
         sync: false
 
-      # Webhook and URL configuration
       - key: N8N_WEBHOOK_URL
         value: "https://${RENDER_EXTERNAL_URL}"
       - key: N8N_WEBHOOK_TEST_URL
@@ -23,11 +22,10 @@ services:
       - key: N8N_HOST
         value: "${RENDER_EXTERNAL_HOSTNAME}"
 
-      # Basic configuration
       - key: N8N_PROTOCOL
         value: "https"
       - key: N8N_PORT
-        value: "443"
+        value: "5678"
       - key: PORT
         value: "5678"
       - key: N8N_ENCRYPTION_KEY
