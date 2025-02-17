@@ -16,30 +16,33 @@ services:
           type: web
           name: n8n
           property: host
-      - key: WEBHOOK_URL
-        fromService:
-          type: web
-          name: n8n
-          property: host
-      - key: N8N_WEBHOOK_URL
-        fromService:
-          type: web
-          name: n8n
-          property: host
-      - key: N8N_WEBHOOK_TEST_URL
-        fromService:
-          type: web
-          name: n8n
-          property: host
+      - key: N8N_PROTOCOL
+        value: "https"
       - key: N8N_PORT
         value: "5678"
       - key: PORT
         value: "5678"
-      - key: N8N_PROTOCOL
-        value: "https"
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
+      - key: N8N_USER_FOLDER
+        value: "/data"
+      # Added tunnel-specific configurations
+      - key: WEBHOOK_TUNNEL_URL
+        fromService:
+          type: web
+          name: n8n
+          property: host
+      - key: N8N_WEBHOOK_TUNNEL_URL
+        fromService:
+          type: web
+          name: n8n
+          property: host
+      - key: VUE_APP_URL_BASE_API
+        fromService:
+          type: web
+          name: n8n
+          property: host
     disk:
       name: n8n-data
-      mountPath: /opt/render/n8n/n8n
+      mountPath: /data
       sizeGB: 10
