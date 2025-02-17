@@ -4,7 +4,6 @@ services:
     env: docker
     plan: starter
     healthCheckPath: /healthz
-    healthCheckTimeout: 300
     envVars:
       - key: N8N_BASIC_AUTH_ACTIVE
         value: "true"
