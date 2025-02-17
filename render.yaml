@@ -3,8 +3,8 @@ services:
     name: n8n
     env: docker
     plan: starter
-    image: n8nio/n8n:latest
-    dockerCommand: n8n start --tunnel
+    buildCommand: docker pull n8nio/n8n:latest
+    startCommand: docker run -p $PORT:5678 --name n8n n8nio/n8n n8n start --tunnel
     disk:
       name: n8n-data
       mountPath: /home/node/.n8n
