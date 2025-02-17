@@ -11,12 +11,22 @@ services:
         sync: false
       - key: N8N_BASIC_AUTH_PASSWORD
         sync: false
-      - key: WEBHOOK_TUNNEL_URL
+      - key: N8N_HOST
         fromService:
           type: web
           name: n8n
           property: host
-      - key: N8N_WEBHOOK_TUNNEL_URL
+      - key: WEBHOOK_URL
+        fromService:
+          type: web
+          name: n8n
+          property: host
+      - key: N8N_WEBHOOK_URL
+        fromService:
+          type: web
+          name: n8n
+          property: host
+      - key: N8N_WEBHOOK_TEST_URL
         fromService:
           type: web
           name: n8n
