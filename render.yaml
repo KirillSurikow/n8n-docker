@@ -3,7 +3,7 @@ services:
     name: n8n
     env: docker
     plan: starter
-    image: n8nio/n8n:latest
+    region: oregon
     healthCheckPath: /
     envVars:
       - key: N8N_BASIC_AUTH_ACTIVE
@@ -12,7 +12,6 @@ services:
         sync: false
       - key: N8N_BASIC_AUTH_PASSWORD
         sync: false
-      
       - key: WEBHOOK_TUNNEL_URL
         fromService:
           type: web
@@ -23,7 +22,6 @@ services:
           type: web
           name: n8n
           property: host
-      
       - key: N8N_PORT
         value: "5678"
       - key: PORT
