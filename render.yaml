@@ -1,15 +1,16 @@
 services:
-  - type: docker
+  - type: web
     name: postgresql
     plan: starter
-    env:
+    env: docker
+    dockerImage: postgres:latest
+    envVars:
       - key: POSTGRES_DB
         value: n8n
       - key: POSTGRES_USER
         value: n8nuser
       - key: POSTGRES_PASSWORD
         generateValue: true
-    dockerImage: postgres:latest
     disk:
       name: postgres-data
       mountPath: /var/lib/postgresql/data
