@@ -3,6 +3,7 @@ services:
     name: postgresql
     env: docker
     plan: starter
+    dockerImage: docker.n8n.io/n8nio/n8n
     startCommand: n8n start
     envVars:
       - key: POSTGRES_DB
