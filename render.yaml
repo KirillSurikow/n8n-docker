@@ -63,7 +63,7 @@ services:
       - key: DB_POSTGRESDB_USER
         value: n8nuser
       - key: DB_POSTGRESDB_PASSWORD
-        value: Herb$2009$
+        value: "Herb$2009$"
     disk:
       name: n8n-data
       mountPath: /data
