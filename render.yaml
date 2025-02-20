@@ -3,7 +3,7 @@ services:
     name: postgresql
     env: docker
     plan: starter
-    dockerCommand: postgres
+    dockerCommand: docker-entrypoint.sh postgres
     envVars:
       - key: POSTGRES_DB
         value: n8n
@@ -40,7 +40,7 @@ services:
       - key: DB_TYPE
         value: postgresdb
       - key: DB_POSTGRESDB_HOST
-        value: postgresql-c61q.onrender.com
+        value: postgresql
       - key: DB_POSTGRESDB_PORT
         value: "5432"
       - key: DB_POSTGRESDB_DATABASE
