@@ -3,8 +3,7 @@ services:
     name: postgresql
     env: docker
     plan: starter
-    dockerImage: docker.n8n.io/n8nio/n8n
-    startCommand: n8n start
+    dockerCommand: postgres
     envVars:
       - key: POSTGRES_DB
         value: n8n
@@ -21,6 +20,7 @@ services:
     name: n8n
     env: docker
     plan: starter
+    dockerCommand: n8n start
     healthCheckPath: /
     envVars:
       - key: N8N_BASIC_AUTH_ACTIVE
@@ -29,11 +29,6 @@ services:
         value: admin
       - key: N8N_BASIC_AUTH_PASSWORD
         generateValue: true
-      - key: N8N_HOST
-        fromService:
-          type: web
-          name: n8n
-          property: host
       - key: N8N_PROTOCOL
         value: "https"
       - key: N8N_PORT
@@ -42,18 +37,6 @@ services:
         value: "5678"
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
-      - key: N8N_USER_FOLDER
-        value: "/data"
-      - key: WEBHOOK_TUNNEL_URL
-        fromService:
-          type: web
-          name: n8n
-          property: host
-      - key: N8N_WEBHOOK_TUNNEL_URL
-        fromService:
-          type: web
-          name: n8n
-          property: host
       - key: DB_TYPE
         value: postgresdb
       - key: DB_POSTGRESDB_HOST
