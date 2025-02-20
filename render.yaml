@@ -3,6 +3,8 @@ services:
     name: postgresql
     env: docker
     plan: starter
+    docker:
+      image: postgres:latest
     envVars:
       - key: POSTGRES_DB
         value: n8n
