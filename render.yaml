@@ -55,7 +55,7 @@ services:
       - key: DB_TYPE
         value: postgresdb
       - key: DB_POSTGRESDB_HOST
-        value: n8n-xex9.onrender.com
+        value: postgresql-c61q.onrender.com
       - key: DB_POSTGRESDB_PORT
         value: "5432"
       - key: DB_POSTGRESDB_DATABASE
