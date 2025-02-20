@@ -60,10 +60,7 @@ services:
       - key: DB_TYPE
         value: postgresdb
       - key: DB_POSTGRESDB_HOST
-        fromService:
-          type: web
-          name: postgresql
-          property: host
+        value: n8n-xex9.onrender.com
       - key: DB_POSTGRESDB_PORT
         value: "5432"
       - key: DB_POSTGRESDB_DATABASE
@@ -71,10 +68,7 @@ services:
       - key: DB_POSTGRESDB_USER
         value: n8nuser
       - key: DB_POSTGRESDB_PASSWORD
-        fromService:
-          type: web
-          name: postgresql
-          property: password
+        value: Herb$2009$
     disk:
       name: n8n-data
       mountPath: /data
