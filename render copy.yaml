@@ -1,21 +1,5 @@
 services:
   - type: web
-    name: postgresql
-    env: docker
-    plan: starter
-    envVars:
-      - key: POSTGRES_DB
-        value: n8n
-      - key: POSTGRES_USER
-        value: n8nuser
-      - key: POSTGRES_PASSWORD
-        generateValue: true
-    disk:
-      name: postgres-data
-      mountPath: /var/lib/postgresql/data
-      sizeGB: 10
-
-  - type: web
     name: n8n
     env: docker
     plan: starter
@@ -57,24 +41,6 @@ services:
           type: web
           name: n8n
           property: host
-      - key: DB_TYPE
-        value: postgresdb
-      - key: DB_POSTGRESDB_HOST
-        fromService:
-          type: web
-          name: postgresql
-          property: host
-      - key: DB_POSTGRESDB_PORT
-        value: "5432"
-      - key: DB_POSTGRESDB_DATABASE
-        value: n8n
-      - key: DB_POSTGRESDB_USER
-        value: n8nuser
-      - key: DB_POSTGRESDB_PASSWORD
-        fromService:
-          type: web
-          name: postgresql
-          property: password
     disk:
       name: n8n-data
       mountPath: /data
