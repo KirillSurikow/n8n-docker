@@ -24,9 +24,9 @@ services:
       - key: N8N_BASIC_AUTH_ACTIVE
         value: "true"
       - key: N8N_BASIC_AUTH_USER
-        sync: false
+        value: admin
       - key: N8N_BASIC_AUTH_PASSWORD
-        sync: false
+        generateValue: true
       - key: N8N_HOST
         fromService:
           type: web
@@ -48,11 +48,6 @@ services:
           name: n8n
           property: host
       - key: N8N_WEBHOOK_TUNNEL_URL
-        fromService:
-          type: web
-          name: n8n
-          property: host
-      - key: VUE_APP_URL_BASE_API
         fromService:
           type: web
           name: n8n
